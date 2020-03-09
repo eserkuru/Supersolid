@@ -10,6 +10,7 @@ namespace Supersolid.DataAccess.Concrete.EntityFramework.Contexts
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Supersolid; Trusted_Connection=true;");
         }
 
+        public DbSet<SolutionGroup> SolutionGroups { get; set; }
         public DbSet<Solution> Solutions { get; set; }
         public DbSet<Layer> Layers { get; set; }
         public DbSet<Project> Projects { get; set; }

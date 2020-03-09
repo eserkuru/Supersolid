@@ -8,7 +8,6 @@ namespace Core.Entities
         /// Gets or sets the entity identifier
         /// </summary>
         Guid Id { get; set; }
-        int IntId { get; set; }
         /// <summary>
         /// Gets or sets the entity created time
         /// </summary>

@@ -6,5 +6,6 @@
         public static string UpdatedSuccessfully = "Updated successfully.";
         public static string DeletedSuccessfully = "Deleted successfully.";
         public static string RemovedSuccessfully = "Removed successfully.";
+        public static string FileCreatedSuccessfully = "File created successfully.";
     }
 }

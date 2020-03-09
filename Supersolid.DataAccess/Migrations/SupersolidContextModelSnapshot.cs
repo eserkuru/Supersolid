@@ -34,11 +34,6 @@ namespace Supersolid.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IntId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -79,11 +74,6 @@ namespace Supersolid.DataAccess.Migrations
                     b.Property<string>("DirectoryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IntId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -121,9 +111,6 @@ namespace Supersolid.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Created")
                         .HasColumnType("nvarchar(max)");
 
@@ -135,11 +122,6 @@ namespace Supersolid.DataAccess.Migrations
 
                     b.Property<string>("DirectoryName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IntId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -156,12 +138,52 @@ namespace Supersolid.DataAccess.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProjectName")
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("SolutionGroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SolutionSubGroup")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SolutionGroupId");
+
+                    b.ToTable("Solutions");
+                });
+
+            modelBuilder.Entity("Supersolid.Entities.Concrete.SolutionGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Created")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Modified")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Solutions");
+                    b.ToTable("SolutionGroups");
                 });
 
             modelBuilder.Entity("Supersolid.Entities.Concrete.Layer", b =>
@@ -176,6 +198,13 @@ namespace Supersolid.DataAccess.Migrations
                     b.HasOne("Supersolid.Entities.Concrete.Layer", "Layer")
                         .WithMany()
                         .HasForeignKey("LayerId");
+                });
+
+            modelBuilder.Entity("Supersolid.Entities.Concrete.Solution", b =>
+                {
+                    b.HasOne("Supersolid.Entities.Concrete.SolutionGroup", "SolutionGroup")
+                        .WithMany()
+                        .HasForeignKey("SolutionGroupId");
                 });
 #pragma warning restore 612, 618
         }

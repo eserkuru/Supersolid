@@ -10,6 +10,9 @@ namespace Supersolid.Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<SolutionGroupManager>().As<ISolutionGroupService>();
+            builder.RegisterType<EfSolutionGroupDal>().As<ISolutionGroupDal>();
+
             builder.RegisterType<SolutionManager>().As<ISolutionService>();
             builder.RegisterType<EfSolutionDal>().As<ISolutionDal>();
 

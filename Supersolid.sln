@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supersolid.Entities", "Supersolid.Entities\Supersolid.Entities.csproj", "{5588138F-2785-465D-885E-0B0D3D70A23A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supersolid.Entities", "Supersolid.Entities\Supersolid.Entities.csproj", "{5588138F-2785-465D-885E-0B0D3D70A23A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supersolid.DataAccess", "Supersolid.DataAccess\Supersolid.DataAccess.csproj", "{E19246B1-810F-48EC-BA31-0D8FD5D91658}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supersolid.DataAccess", "Supersolid.DataAccess\Supersolid.DataAccess.csproj", "{E19246B1-810F-48EC-BA31-0D8FD5D91658}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supersolid.Business", "Supersolid.Business\Supersolid.Business.csproj", "{11A739AA-9BEF-4C56-9AA2-6D2A28C6B6B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supersolid.Business", "Supersolid.Business\Supersolid.Business.csproj", "{11A739AA-9BEF-4C56-9AA2-6D2A28C6B6B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{534AF4EA-BF2E-4FFD-9AE8-B0B535A90341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{534AF4EA-BF2E-4FFD-9AE8-B0B535A90341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supersolid.WebApi", "Supersolid.WebApi\Supersolid.WebApi.csproj", "{B51536E9-3F57-4A23-81B9-D211B97C7E0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supersolid.WebApi", "Supersolid.WebApi\Supersolid.WebApi.csproj", "{B51536E9-3F57-4A23-81B9-D211B97C7E0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

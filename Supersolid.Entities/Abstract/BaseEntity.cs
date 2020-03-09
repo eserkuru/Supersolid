@@ -19,9 +19,6 @@ namespace Supersolid.Entities.Abstract
         [Key]
         public Guid Id { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IntId { get; set; }
-
         /// <summary>
         /// Gets or sets the entity created time
         /// </summary>

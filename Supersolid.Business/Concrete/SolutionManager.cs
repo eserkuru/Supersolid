@@ -23,9 +23,19 @@ namespace Supersolid.Business.Concrete
             return new SuccessDataResult<Solution>(_solutionDal.Get(s => s.Id == id));
         }
 
+        public IDataResult<Solution> GetFullById(Guid id)
+        {
+            return new SuccessDataResult<Solution>(_solutionDal.GetFull(s => s.Id == id));
+        }
+
         public IDataResult<List<Solution>> GetList()
         {
             return new SuccessDataResult<List<Solution>>(_solutionDal.GetList().ToList());
+        }
+
+        public IDataResult<List<Solution>> GetFullList()
+        {
+            return new SuccessDataResult<List<Solution>>(_solutionDal.GetFullList().ToList());
         }
 
         public IResult Add(Solution solution)
@@ -50,6 +60,13 @@ namespace Supersolid.Business.Concrete
         {
             _solutionDal.Remove(solution);
             return new SuccessResult(Messages.RemovedSuccessfully);
+        }
+
+        public IResult CreateFile(Solution solution)
+        {
+            solution.IsFileCreated = true;
+            _solutionDal.Update(solution);
+            return new SuccessResult(Messages.FileCreatedSuccessfully);
         }
     }
 }

@@ -3,24 +3,41 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Supersolid.DataAccess.Migrations
 {
-    public partial class NewDatabase : Migration
+    public partial class CreateDatabaseSupersolid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Solutions",
+                name: "SolutionGroups",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IntId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     Modified = table.Column<string>(nullable: true),
                     ModifiedBy = table.Column<string>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    CompanyName = table.Column<string>(nullable: true),
-                    ProjectName = table.Column<string>(nullable: true),
+                    GroupName = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SolutionGroups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Solutions",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    Modified = table.Column<string>(nullable: true),
+                    ModifiedBy = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    SolutionGroupId = table.Column<Guid>(nullable: true),
+                    SolutionSubGroup = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     LongDescription = table.Column<string>(nullable: true),
                     DirectoryName = table.Column<string>(nullable: true),
@@ -29,6 +46,12 @@ namespace Supersolid.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Solutions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Solutions_SolutionGroups_SolutionGroupId",
+                        column: x => x.SolutionGroupId,
+                        principalTable: "SolutionGroups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -36,8 +59,6 @@ namespace Supersolid.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IntId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     Modified = table.Column<string>(nullable: true),
@@ -64,8 +85,6 @@ namespace Supersolid.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IntId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     Created = table.Column<string>(nullable: true),
                     CreatedBy = table.Column<string>(nullable: true),
                     Modified = table.Column<string>(nullable: true),
@@ -98,6 +117,11 @@ namespace Supersolid.DataAccess.Migrations
                 name: "IX_Projects_LayerId",
                 table: "Projects",
                 column: "LayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Solutions_SolutionGroupId",
+                table: "Solutions",
+                column: "SolutionGroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -110,6 +134,9 @@ namespace Supersolid.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Solutions");
+
+            migrationBuilder.DropTable(
+                name: "SolutionGroups");
         }
     }
 }

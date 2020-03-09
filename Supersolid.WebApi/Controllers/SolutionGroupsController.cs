@@ -7,19 +7,18 @@ namespace Supersolid.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SolutionsController : ControllerBase
+    public class SolutionGroupsController : ControllerBase
     {
-        private readonly ISolutionService _solutionService;
-
-        public SolutionsController(ISolutionService solutionService)
+        private readonly ISolutionGroupService _solutionGroupService;
+        public SolutionGroupsController(ISolutionGroupService solutionGroupService)
         {
-            _solutionService = solutionService;
+            _solutionGroupService = solutionGroupService;
         }
 
         [HttpGet("getlist")]
         public IActionResult GetList()
         {
-            var result = _solutionService.GetFullList();
+            var result = _solutionGroupService.GetList();
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -31,7 +30,7 @@ namespace Supersolid.WebApi.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(Guid id)
         {
-            var result = _solutionService.GetFullById(id);
+            var result = _solutionGroupService.GetById(id);
             if (result.Success)
             {
                 return Ok(result.Data);
@@ -41,9 +40,9 @@ namespace Supersolid.WebApi.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Solution solution)
+        public IActionResult Add(SolutionGroup solutionGroup)
         {
-            var result = _solutionService.Add(solution);
+            var result = _solutionGroupService.Add(solutionGroup);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -53,9 +52,9 @@ namespace Supersolid.WebApi.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Solution solution)
+        public IActionResult Update(SolutionGroup solutionGroup)
         {
-            var result = _solutionService.Update(solution);
+            var result = _solutionGroupService.Update(solutionGroup);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -65,9 +64,9 @@ namespace Supersolid.WebApi.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Solution solution)
+        public IActionResult Delete(SolutionGroup solutionGroup)
         {
-            var result = _solutionService.Delete(solution);
+            var result = _solutionGroupService.Delete(solutionGroup);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -77,21 +76,9 @@ namespace Supersolid.WebApi.Controllers
         }
 
         [HttpPost("remove")]
-        public IActionResult Remove(Solution solution)
+        public IActionResult Remove(SolutionGroup solutionGroup)
         {
-            var result = _solutionService.Remove(solution);
-            if (result.Success)
-            {
-                return Ok(result.Message);
-            }
-
-            return BadRequest(result.Message);
-        }
-
-        [HttpPost("createfile")]
-        public IActionResult CreateFile(Solution solution)
-        {
-            var result = _solutionService.CreateFile(solution);
+            var result = _solutionGroupService.Remove(solutionGroup);
             if (result.Success)
             {
                 return Ok(result.Message);
